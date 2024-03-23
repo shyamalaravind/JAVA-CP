@@ -1,256 +1,140 @@
+/*
+ * @Author: paranoidAndroid123
+ * `\-. `
+ * ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+ * ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣦⣶⣾⣿⣷⣶⣶⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+ * ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣶⣿⣟⠯⠓⣉⣩⣭⣝⣻⣿⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+ * ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣾⣿⠗⢡⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+ * ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⠏⣰⣿⣿⣿⣿⣿⣿⣿⠋⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+ * ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⣿⣿⣿⢠⣿⣿⣿⣿⣿⠿⢿⣿⣀⣿⣿⣿⣿⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+ * ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣸⣿⣿⣿⠋⠀⠀⠀⣨⣩⠉⠀⢹⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀पवन पुत्र हनुमान की जय
+ * ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠻⣿⣿⣿⣿⡏⣀⣀⣀⣀⢧⣿⠂⣀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+ * ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣶⣿⣿⠗⡤⢤⣀⡉⠊⡱⢋⣉⣉⣷⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+ * ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⡝⣿⣿⠀⠈⠙⠿⠃⠀⡇⠽⠛⢻⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+ * ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣴⣿⣿⣿⣿⣿⡀⠀⣀⠤⠾⣄⡹⣄⠀⢸⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+ * ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣋⢹⣿⣿⣷⡾⢄⠀⠀⠀⠀⢈⣶⣿⠿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀
+ * ⠀⠀⠀⠀⠀⠀⠀⣇⣸⣿⣿⣿⣿⣿⡏⢻⣿⣿⣇⠈⠡⢄⣀⠐⢉⣿⣿⣴⣿⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+ * ⠀⠀⠀⠀⠀⠀⠀⣿⡿⠟⢻⣿⣿⣿⠀⠀⠻⣿⣿⣷⣤⣄⣠⣴⣿⣿⣿⣿⣿⣿⣇⡀⠀⠀⠀⠀⠀⠀⠀
+ * ⠀⠀⠀⣠⠔⠒⠒⠉⠀⠀⠀⣿⣿⣿⡇⠀⠀⠀⠉⠛⢿⣿⡿⠛⠋⠘⣿⣿⠿⢯⠛⡂⠤⢄⡀⠀⠀⠀⠀
+ * ⠀⣠⠊⠁⠀⠀⠀⠀⠀⠀⠀⢻⠁⠀⠸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⡇⠀
+ * ⣰⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢇⠀⠀⢣⠒⠲⠤⣀⡀⠀⡀⣀⠤⠒⠂⠸⡀⠀⢱⠀⠀⠀⠀⠀⠀⠙⣄
+ * ⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢆⡀⠀⢣⡀⠀⠈⠀⠈⠀⠃⠀⠀⠀⠰⠧⠀⠚⠀⠀⠀⠀⠀⠀⠀⠙
+ * ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+ * ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+ * ⠀⠀⠀⠀⠀⠀⠀⠀⠐⠛⠲⠻⠷⠒⠞⠂⠸⠣⠲⠖⠖⠀⠂⠻⠻⠿⠼⠟⠿⠧⠿⠃⠀⠀⠀⠀⠀⠀⠀
+ * ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+ */
 
-import java.io.*;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
 
-public class Solution extends Template {
-
-    public static void main(String args[]) throws IOException {
-        int cases = inputInt();
-
-        while (cases-- > 0) {
-            solve();
-        }
-
-        closeBW();
-
-    }
+public class Solution extends IO {
+    static PrintWriter out = new PrintWriter(System.out);
 
     private static void solve() {
+        out.println("asdf");
+    }
 
+    public static void main(String args[]) throws IOException {
+        int cases = nextInt();
+        while (cases-- > 0) {
+
+        }
+        out.close();
     }
 
 }
 
-class Template {
+class IO {
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static StringTokenizer st = new StringTokenizer("");
 
-    static Reader sc = new Reader();
-    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
-    public static int inputInt() throws IOException {
-        return sc.nextInt();
-    }
-
-    public static long inputLong() throws IOException {
-        return sc.nextLong();
-    }
-
-    public static double inputDouble() throws IOException {
-        return sc.nextDouble();
-    }
-
-    public static String inputString() throws IOException {
-        return sc.readLine();
-    }
-
-    public static void print(String a) throws IOException {
-        bw.write(a);
-    }
-
-    public static void printWithSpace(String a) throws IOException {
-        bw.write(a + " ");
-    }
-
-    public static void printNextLine(String a) throws IOException {
-        bw.write(a + "\n");
-    }
-
-    public static void printWithSpace(int a) throws IOException {
-
-        bw.write(Integer.toString(a) + " ");
-    }
-
-    public static void printNextLine(int a) throws IOException {
-        bw.write(Integer.toString(a) + "\n");
-    }
-
-    public static void print(double a) throws IOException {
-        bw.write(Double.toString(a));
-    }
-
-    public static void printWithSpace(double a) throws IOException {
-        bw.write(Double.toString(a) + " ");
-    }
-
-    public static void printNextLine(double a) throws IOException {
-        bw.write(Double.toString(a) + "\n");
-    }
-
-    public static void print(char a) throws IOException {
-        bw.write(Character.toString(a));
-    }
-
-    public static void printWithSpace(char a) throws IOException {
-        bw.write(Character.toString(a) + " ");
-    }
-
-    public static void printNextLine(char a) throws IOException {
-        bw.write(Character.toString(a) + "\n");
-    }
-
-    public static void print(float a) throws IOException {
-        bw.write(Float.toString(a));
-    }
-
-    public static void printWithSpace(float a) throws IOException {
-        bw.write(Float.toString(a) + " ");
-    }
-
-    public static void printNextLine(float a) throws IOException {
-        bw.write(Float.toString(a) + "\n");
-    }
-
-    public static void print(long a) throws IOException {
-        bw.write(Long.toString(a));
-    }
-
-    public static void printWithSpace(long a) throws IOException {
-        bw.write(Long.toString(a) + " ");
-    }
-
-    public static void printNextLine(long a) throws IOException {
-        bw.write(Long.toString(a) + "\n");
-    }
-
-    public static void closeBW() throws IOException {
-        bw.flush();
-        bw.close();
-    }
-
-    static class Reader {
-        final private int BUFFER_SIZE = 1 << 16;
-        private DataInputStream din;
-        private byte[] buffer;
-        private int bufferPointer, bytesRead;
-
-        public Reader() {
-            din = new DataInputStream(System.in);
-            buffer = new byte[BUFFER_SIZE];
-            bufferPointer = bytesRead = 0;
-        }
-
-        public Reader(String file_name) throws IOException {
-            din = new DataInputStream(new FileInputStream(file_name));
-            buffer = new byte[BUFFER_SIZE];
-            bufferPointer = bytesRead = 0;
-        }
-
-        public String readLine() throws IOException {
-            byte[] buf = new byte[64]; // line length
-            int cnt = 0, c;
-            while ((c = read()) != -1) {
-                if (c == '\n')
-                    break;
-                buf[cnt++] = (byte) c;
+    static String nextString() {
+        while (!st.hasMoreTokens())
+            try {
+                st = new StringTokenizer(br.readLine());
+            } catch (IOException e) {
             }
-            return new String(buf, 0, cnt);
-        }
-
-        public int nextInt() throws IOException {
-            int ret = 0;
-            byte c = read();
-            while (c <= ' ')
-                c = read();
-            boolean neg = (c == '-');
-            if (neg)
-                c = read();
-            do {
-                ret = ret * 10 + c - '0';
-            } while ((c = read()) >= '0' && c <= '9');
-            if (neg)
-                return -ret;
-            return ret;
-        }
-
-        public long nextLong() throws IOException {
-            long ret = 0;
-            byte c = read();
-            while (c <= ' ')
-                c = read();
-            boolean neg = (c == '-');
-            if (neg)
-                c = read();
-            do {
-                ret = ret * 10 + c - '0';
-            } while ((c = read()) >= '0' && c <= '9');
-            if (neg)
-                return -ret;
-            return ret;
-        }
-
-        public double nextDouble() throws IOException {
-            double ret = 0, div = 1;
-            byte c = read();
-            while (c <= ' ')
-                c = read();
-            boolean neg = (c == '-');
-            if (neg)
-                c = read();
-            do {
-                ret = ret * 10 + c - '0';
-            } while ((c = read()) >= '0' && c <= '9');
-            if (c == '.') {
-                while ((c = read()) >= '0' && c <= '9') {
-                    ret += (c - '0') / (div *= 10);
-                }
-            }
-            if (neg)
-                return -ret;
-            return ret;
-        }
-
-        private void fillBuffer() throws IOException {
-            bytesRead = din.read(buffer, bufferPointer = 0, BUFFER_SIZE);
-            if (bytesRead == -1)
-                buffer[0] = -1;
-        }
-
-        private byte read() throws IOException {
-            if (bufferPointer == bytesRead)
-                fillBuffer();
-            return buffer[bufferPointer++];
-        }
-
-        public void close() throws IOException {
-            if (din == null)
-                return;
-            din.close();
-        }
+        return st.nextToken();
     }
 
-}
-
-class StandardFunctions {
-    public static int lowerBound(List<Integer> ar, int k) {
-        int s = 0;
-        int e = ar.size();
-        while (s != e) {
-            int mid = s + e >> 1;
-            if (ar.get(mid) < k) {
-                s = mid + 1;
-            } else {
-                e = mid;
-            }
-        }
-        if (s == ar.size()) {
-            return -1;
-        }
-        return s;
+    static int nextInt() {
+        return Integer.parseInt(nextString());
     }
 
-    public static int upperBound(List<Integer> ar, int k) {
-        int s = 0;
-        int e = ar.size();
-        while (s != e) {
-            int mid = s + e >> 1;
-            if (ar.get(mid) <= k) {
-                s = mid + 1;
-            } else {
-                e = mid;
-            }
-        }
-        if (s == ar.size()) {
-            return -1;
-        }
-        return s;
+    static long nextLong() {
+        return Long.parseLong(nextString());
+    }
+
+    static double nextDouble() {
+        return Double.parseDouble(nextString());
+    }
+
+    static float nextFloat() {
+        return Float.parseFloat(nextString());
+    }
+
+    static boolean nextBoolean() {
+        return Boolean.parseBoolean(nextString());
+    }
+
+    static char nextChar() throws IOException {
+        return (char) br.read();
+    }
+
+    static String nextLine() throws IOException {
+        return br.readLine();
+    }
+
+    static int[] nextIntArray(int length) {
+        int[] output = new int[length];
+        for (int i = 0; i < length; i++)
+            output[i] = nextInt();
+        return output;
+    }
+
+    static long[] nextLongArray(int length) {
+        long[] output = new long[length];
+        for (int i = 0; i < length; i++)
+            output[i] = nextLong();
+        return output;
+    }
+
+    static double[] nextDoubleArray(int length) {
+        double[] output = new double[length];
+        for (int i = 0; i < length; i++)
+            output[i] = nextDouble();
+        return output;
+    }
+
+    static float[] nextFloatArray(int length) {
+        float[] output = new float[length];
+        for (int i = 0; i < length; i++)
+            output[i] = nextFloat();
+        return output;
+    }
+
+    static boolean[] nextBooleanArray(int length) {
+        boolean[] output = new boolean[length];
+        for (int i = 0; i < length; i++)
+            output[i] = nextBoolean();
+        return output;
+    }
+
+    static char[] nextCharArray(int length) throws IOException {
+        char[] output = new char[length];
+        for (int i = 0; i < length; i++)
+            output[i] = nextChar();
+        return output;
+    }
+
+    static String[] nextStringArray(int length) throws IOException {
+        String[] output = new String[length];
+        for (int i = 0; i < length; i++)
+            output[i] = nextLine();
+        return output;
     }
 }
