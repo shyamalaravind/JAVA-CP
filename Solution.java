@@ -57,6 +57,35 @@ public class Solution extends IO {
 
 }
 
+class StandardFunctions {
+    public static int upperBound(int[] arr, int s, int e, int k) {
+        while (s <= e) {
+            int m = (s + e) / 2;
+
+            if (arr[m] > k) {
+                e = m - 1;
+            } else
+                s = m + 1;
+        }
+
+        return s;
+    }
+
+    public static int lowerBound(int[] arr, int s, int e, int k) {
+        while (s <= e) {
+            int m = (s + e) / 2;
+
+            if (arr[m] >= k) {
+                e = m - 1;
+            } else
+                s = m + 1;
+        }
+
+        return s;
+    }
+}
+
+
 class IO {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer st = new StringTokenizer("");
