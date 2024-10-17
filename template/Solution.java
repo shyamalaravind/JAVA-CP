@@ -58,7 +58,6 @@ class StandardFunctions {
     }
 }
 
-
 class Input {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer st = new StringTokenizer("");
@@ -157,7 +156,7 @@ class Stack<T> extends ArrayDeque<T> {
 
     public T pop() {
         return pollLast();
-    } 
+    }
 
     public void push(T val) {
         offerLast(val);
