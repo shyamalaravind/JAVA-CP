@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayDeque;
+import java.util.Collection;
 import java.util.StringTokenizer;
 
 public class Solution extends Input {
@@ -150,6 +151,10 @@ class Input {
 }
 
 class Stack<T> extends ArrayDeque<T> {
+    Stack(Collection<T> collection) {
+        super(collection);
+    }
+
     public T pop() {
         return pollLast();
     } 
@@ -157,8 +162,4 @@ class Stack<T> extends ArrayDeque<T> {
     public void push(T val) {
         offerLast(val);
     }
-}
-
-class Queue<T> extends ArrayDeque<T> {
-
 }
