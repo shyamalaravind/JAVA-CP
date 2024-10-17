@@ -4,9 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.ArrayDeque;
 import java.util.StringTokenizer;
 
-public class Solution extends IO {
+public class Solution extends Input {
     static PrintWriter out = new PrintWriter(System.out);
 
     private static void solve() {
@@ -57,7 +58,7 @@ class StandardFunctions {
 }
 
 
-class IO {
+class Input {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer st = new StringTokenizer("");
 
@@ -146,4 +147,18 @@ class IO {
             output[i] = nextLine();
         return output;
     }
+}
+
+class Stack<T> extends ArrayDeque<T> {
+    public T pop() {
+        return pollLast();
+    } 
+
+    public void push(T val) {
+        offerLast(val);
+    }
+}
+
+class Queue<T> extends ArrayDeque<T> {
+
 }
