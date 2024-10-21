@@ -11,10 +11,6 @@ import java.util.StringTokenizer;
 public class Solution extends Input {
     static PrintWriter out = new PrintWriter(System.out);
 
-    private static void solve() {
-        out.println("asdf");
-    }
-
     public static void main(String args[]) throws IOException {
         int cases = nextInt();
         for (int i = 1; i <= cases; i++) {
@@ -27,6 +23,13 @@ public class Solution extends Input {
         }
         out.close();
     }
+
+
+    
+    private static void solve() {
+    
+    }
+
 
 }
 
