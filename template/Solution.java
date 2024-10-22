@@ -8,7 +8,7 @@ import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.StringTokenizer;
 
-public class Solution extends Input {
+public class Solution extends StandardFunctions {
     static PrintWriter out = new PrintWriter(System.out);
 
     public static void main(String args[]) throws IOException {
@@ -33,7 +33,7 @@ public class Solution extends Input {
 
 }
 
-class StandardFunctions {
+class StandardFunctions extends Input {
     public static int upperBound(int[] arr, int s, int e, int k) {
         while (s <= e) {
             int m = (s + e) / 2;

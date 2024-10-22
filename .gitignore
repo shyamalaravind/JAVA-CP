@@ -1,4 +1,5 @@
 meta-files
 *.class
 *.cph
+.vscode
 
