@@ -165,3 +165,57 @@ class Stack<T> extends ArrayDeque<T> {
         offerLast(val);
     }
 }
+
+
+
+class SegmentTreeForSlots {
+    int size;
+    int [] tree;
+
+    SegmentTreeForSlots(int size){
+        this.size = size;
+        this.tree = new int[4 * size];
+        buildTree(0, size - 1, 0);
+    }
+
+    private void buildTree(int start, int end, int index){
+        if(start == end){
+            tree[index] = 1;
+            return;
+        }
+
+        int left = 2* index + 1;
+        int right = 2 * index + 2;
+        int mid = (end - start)/2 + start;
+
+
+        buildTree(start, mid, left);
+        buildTree(mid + 1, end, right);
+        tree[index] = tree[left] + tree[right];
+    }
+
+    public int getPositionAndUpdate(int k) {
+        return getPositionAndUpdate(0, size - 1, 0, k);
+    }
+
+    private int getPositionAndUpdate(int start, int end, int index, int k){
+        if(start == end) {
+            tree[index] = 0;
+            return start;
+        }
+        int left = 2 * index + 1;
+        int right =  2 * index + 2;
+        int mid = (end - start)/ 2 + start;
+        int returnVal = -1;
+        if(tree[left] >= k) {
+            returnVal =  getPositionAndUpdate(start, mid, left, k);
+        }
+        else {
+            returnVal =  getPositionAndUpdate(mid + 1, end, right, k - tree[left]);
+        }
+        tree[index] = tree[left] + tree[right];
+        return returnVal;
+    }
+}
+
+
