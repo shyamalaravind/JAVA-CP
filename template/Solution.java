@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayDeque;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.StringTokenizer;
 
@@ -215,6 +216,50 @@ class SegmentTreeForSlots {
         }
         tree[index] = tree[left] + tree[right];
         return returnVal;
+    }
+}
+
+
+
+class DisjointSet
+{
+    int[] parent;
+    int[] size;
+    
+    DisjointSet(int n)
+    {
+        this.parent = new int[n];
+        this.size = new int[n];
+        
+        for(int i = 0; i < n; i++) parent[i] = i;
+        Arrays.fill(size, 1);
+    }
+    
+    public void union(int u, int v)
+    {
+        int parU = getParent(u);
+        
+        int parV = getParent(v);
+        
+        if(parU == parV) return;
+        
+        if(size[parU] > size[parV])
+        {
+            parent[parV] = parU;
+            size[parU] = size[parU] + size[parV];
+        }
+        else 
+        {
+            parent[parU] = parV;
+            size[parV] = size[parU] + size[parV];
+        }
+    }
+    
+    public int getParent(int u)
+    {
+        if(parent[u] == u) return u;
+        parent[u] = getParent(parent[u]);
+        return parent[u];
     }
 }
 
