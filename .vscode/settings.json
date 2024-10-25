@@ -1,0 +1,9 @@
+{
+    "java.debug.settings.onBuildFailureProceed": true,
+    "java.project.explorer.showNonJavaResources": false,
+    "cph.general.saveLocation": "C:\\WorkSpace\\JAVA-CP\\build",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "always"
+    }
+}
