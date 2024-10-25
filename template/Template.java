@@ -10,14 +10,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.StringTokenizer;
 
-class Solution extends StandardFunctions {
-
-    public void solve() {
-
-    }
-
-}
-
 public class Template {
 
     public static void main(String args[]) throws IOException {
@@ -32,6 +24,14 @@ public class Template {
             }
         }
         StdIO.out.close();
+    }
+
+}
+
+class Solution extends StandardFunctions {
+
+    public void solve() {
+
     }
 
 }
