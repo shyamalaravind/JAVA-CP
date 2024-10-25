@@ -1,6 +1,5 @@
 package template;
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,32 +9,33 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.StringTokenizer;
 
-public class Solution extends StandardFunctions {
-    static PrintWriter out = new PrintWriter(System.out);
+class Solution extends StandardFunctions {
+
+    public void solve() {
+
+    }
+
+}
+
+public class Template {
 
     public static void main(String args[]) throws IOException {
-        int cases = nextInt();
+        int cases = StdIO.nextInt();
+        Solution solution = new Solution();
         for (int i = 1; i <= cases; i++) {
             try {
-                solve();
+                solution.solve();
             } catch (Throwable e) {
                 System.err.println(e.toString() + " for testcase: " + i);
                 e.printStackTrace();
             }
         }
-        out.close();
+        StdIO.out.close();
     }
-
-
-    
-    private static void solve() {
-    
-    }
-
 
 }
 
-class StandardFunctions extends Input {
+class StandardFunctions extends StdIO {
     public static int upperBound(int[] arr, int s, int e, int k) {
         while (s <= e) {
             int m = (s + e) / 2;
@@ -63,9 +63,10 @@ class StandardFunctions extends Input {
     }
 }
 
-class Input {
+class StdIO {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer st = new StringTokenizer("");
+    static PrintWriter out = new PrintWriter(System.out);
 
     static String nextString() {
         while (!st.hasMoreTokens())
@@ -168,28 +169,25 @@ class Stack<T> extends ArrayDeque<T> {
     }
 }
 
-
-
 class SegmentTreeForSlots {
     int size;
-    int [] tree;
+    int[] tree;
 
-    SegmentTreeForSlots(int size){
+    SegmentTreeForSlots(int size) {
         this.size = size;
         this.tree = new int[4 * size];
         buildTree(0, size - 1, 0);
     }
 
-    private void buildTree(int start, int end, int index){
-        if(start == end){
+    private void buildTree(int start, int end, int index) {
+        if (start == end) {
             tree[index] = 1;
             return;
         }
 
-        int left = 2* index + 1;
+        int left = 2 * index + 1;
         int right = 2 * index + 2;
-        int mid = (end - start)/2 + start;
-
+        int mid = (end - start) / 2 + start;
 
         buildTree(start, mid, left);
         buildTree(mid + 1, end, right);
@@ -200,68 +198,59 @@ class SegmentTreeForSlots {
         return getPositionAndUpdate(0, size - 1, 0, k);
     }
 
-    private int getPositionAndUpdate(int start, int end, int index, int k){
-        if(start == end) {
+    private int getPositionAndUpdate(int start, int end, int index, int k) {
+        if (start == end) {
             tree[index] = 0;
             return start;
         }
         int left = 2 * index + 1;
-        int right =  2 * index + 2;
-        int mid = (end - start)/ 2 + start;
+        int right = 2 * index + 2;
+        int mid = (end - start) / 2 + start;
         int returnVal = -1;
-        if(tree[left] >= k) {
-            returnVal =  getPositionAndUpdate(start, mid, left, k);
-        }
-        else {
-            returnVal =  getPositionAndUpdate(mid + 1, end, right, k - tree[left]);
+        if (tree[left] >= k) {
+            returnVal = getPositionAndUpdate(start, mid, left, k);
+        } else {
+            returnVal = getPositionAndUpdate(mid + 1, end, right, k - tree[left]);
         }
         tree[index] = tree[left] + tree[right];
         return returnVal;
     }
 }
 
-
-
-class DisjointSet
-{
+class DisjointSet {
     int[] parent;
     int[] size;
-    
-    DisjointSet(int n)
-    {
+
+    DisjointSet(int n) {
         this.parent = new int[n];
         this.size = new int[n];
-        
-        for(int i = 0; i < n; i++) parent[i] = i;
+
+        for (int i = 0; i < n; i++)
+            parent[i] = i;
         Arrays.fill(size, 1);
     }
-    
-    public void union(int u, int v)
-    {
+
+    public void union(int u, int v) {
         int parU = getParent(u);
-        
+
         int parV = getParent(v);
-        
-        if(parU == parV) return;
-        
-        if(size[parU] > size[parV])
-        {
+
+        if (parU == parV)
+            return;
+
+        if (size[parU] > size[parV]) {
             parent[parV] = parU;
             size[parU] = size[parU] + size[parV];
-        }
-        else 
-        {
+        } else {
             parent[parU] = parV;
             size[parV] = size[parU] + size[parV];
         }
     }
-    
-    public int getParent(int u)
-    {
-        if(parent[u] == u) return u;
+
+    public int getParent(int u) {
+        if (parent[u] == u)
+            return u;
         parent[u] = getParent(parent[u]);
         return parent[u];
     }
 }
-
-
