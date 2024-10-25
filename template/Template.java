@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.StringTokenizer;
 
 class Solution extends StandardFunctions {
@@ -35,7 +36,7 @@ public class Template {
 
 }
 
-class StandardFunctions extends StdIO {
+class StandardFunctions extends ModularArithmetic {
     public static int upperBound(int[] arr, int s, int e, int k) {
         while (s <= e) {
             int m = (s + e) / 2;
@@ -61,6 +62,67 @@ class StandardFunctions extends StdIO {
 
         return s;
     }
+
+    public static void swap(int i, int j, int[] arr) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public static void swap(int i, int j, double[] arr) {
+        double temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public static void swap(int i, int j, float[] arr) {
+        float temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public static void swap(int i, int j, long[] arr) {
+        long temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public static void swap(int i, int j, short[] arr) {
+        short temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public static void swap(int i, int j, byte[] arr) {
+        byte temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public static void swap(int i, int j, boolean[] arr) {
+        boolean temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public static void swap(int i, int j, char[] arr) {
+        char temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public static <T> void swap(int i, int j, T[] arr) {
+        T temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public static <T> void swap(int i, int j, List<T> list) {
+        T temp = list.get(i);
+        list.set(i, list.get(i));
+        list.set(j, temp);
+    }
+
 }
 
 class StdIO {
@@ -152,6 +214,114 @@ class StdIO {
         for (int i = 0; i < length; i++)
             output[i] = nextLine();
         return output;
+    }
+}
+
+class ModularArithmetic extends StdIO {
+    static int MOD = 1000000007;
+
+    public static void setMod(int mod) {
+        MOD = mod;
+    }
+
+    public static int modAdd(int a, int b) {
+        return (a % MOD + b % MOD) % MOD;
+    }
+
+    public static long modAdd(long a, long b) {
+        return (a % MOD + b % MOD) % MOD;
+    }
+
+    public static int modSubtract(int a, int b) {
+        return ((a % MOD - b % MOD) + MOD) % MOD;
+    }
+
+    public static long modSubtract(long a, long b) {
+        return ((a % MOD - b % MOD) + MOD) % MOD;
+    }
+
+    public static int modMultiply(int a, int b) {
+        return (int) ((1L * a % MOD * b % MOD) % MOD);
+    }
+
+    public static long modMultiply(long a, long b) {
+        return (a % MOD * b % MOD) % MOD;
+    }
+
+    public static int modPow(int base, int exp) {
+        int result = 1;
+        base = base % MOD;
+        while (exp > 0) {
+            if ((exp & 1) == 1) {
+                result = modMultiply(result, base);
+            }
+            base = modMultiply(base, base);
+            exp >>= 1;
+        }
+        return result;
+    }
+
+    public static long modPow(long base, long exp) {
+        long result = 1;
+        base = base % MOD;
+        while (exp > 0) {
+            if ((exp & 1) == 1) {
+                result = modMultiply(result, base);
+            }
+            base = modMultiply(base, base);
+            exp >>= 1;
+        }
+        return result;
+    }
+
+    public static int modInverse(int a) {
+        return modPow(a, MOD - 2);
+    }
+
+    public static long modInverse(long a) {
+        return modPow(a, MOD - 2);
+    }
+
+    public static int modDivide(int a, int b) {
+        return modMultiply(a, modInverse(b));
+    }
+
+    public static long modDivide(long a, long b) {
+        return modMultiply(a, modInverse(b));
+    }
+
+    public static int[] modFactorial(int n) {
+        int[] factorial = new int[n + 1];
+        factorial[0] = 1;
+        for (int i = 1; i <= n; i++) {
+            factorial[i] = modMultiply(factorial[i - 1], i);
+        }
+        return factorial;
+    }
+
+    public static long[] modFactorialLong(int n) {
+        long[] factorial = new long[n + 1];
+        factorial[0] = 1;
+        for (int i = 1; i <= n; i++) {
+            factorial[i] = modMultiply(factorial[i - 1], i);
+        }
+        return factorial;
+    }
+
+    public static int modBinomial(int n, int k, int[] factorial) {
+        if (k > n)
+            return 0;
+        int numerator = factorial[n];
+        int denominator = modMultiply(factorial[k], factorial[n - k]);
+        return modDivide(numerator, denominator);
+    }
+
+    public static long modBinomial(int n, int k, long[] factorial) {
+        if (k > n)
+            return 0;
+        long numerator = factorial[n];
+        long denominator = modMultiply(factorial[k], factorial[n - k]);
+        return modDivide(numerator, denominator);
     }
 }
 
