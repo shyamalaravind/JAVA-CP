@@ -215,6 +215,82 @@ class StdIO {
             output[i] = nextLine();
         return output;
     }
+
+    static void printIntArray(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            out.print(arr[i]);
+            if (i != arr.length - 1)
+                out.print(' ');
+        }
+        out.println();
+    }
+
+    static void printFloatArray(float[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            out.print(arr[i]);
+            if (i != arr.length - 1)
+                out.print(' ');
+        }
+        out.println();
+    }
+
+    static void printDoubleArray(double[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            out.print(arr[i]);
+            if (i != arr.length - 1)
+                out.print(' ');
+        }
+        out.println();
+    }
+
+    static void printCharArray(char[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            out.print(arr[i]);
+            if (i != arr.length - 1)
+                out.print(' ');
+        }
+        out.println();
+    }
+
+    static void printBooleanArray(boolean[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            out.print(arr[i]);
+            if (i != arr.length - 1)
+                out.print(' ');
+        }
+        out.println();
+    }
+
+    static void printByteArray(byte[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            out.print(arr[i]);
+            if (i != arr.length - 1)
+                out.print(' ');
+        }
+        out.println();
+    }
+
+    static <T> void printArray(T[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            out.print(arr[i]);
+            if (i != arr.length - 1)
+                out.print(' ');
+        }
+        out.println();
+    }
+
+    static <T> void printList(Collection<T> coll) {
+        int n = coll.size();
+        int i = 0;
+        for (T el : coll) {
+            out.print(el);
+            if (i != n - 1)
+                out.print(' ');
+            i++;
+        }
+
+        out.println();
+    }
 }
 
 class ModularArithmetic extends StdIO {
