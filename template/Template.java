@@ -463,6 +463,97 @@ class SegmentTreeForSlots {
     }
 }
 
+class SegmentTreeForMax {
+    int size;
+    int[] tree;
+    int[] input;
+
+    SegmentTreeForMax(int[] input) {
+        this.size = input.length;
+        this.tree = new int[4 * size];
+        buildTree(0, size - 1, 0);
+    }
+
+    private void buildTree(int start, int end, int index) {
+        if (start == end) {
+            tree[index] = input[start];
+            return;
+        }
+        int left = 2 * index + 1;
+        int right = 2 * index + 2;
+        int mid = (end - start) / 2 + start;
+
+        buildTree(start, mid, left);
+        buildTree(mid + 1, end, right);
+        tree[index] = Math.max(tree[left], tree[right]);
+    }
+
+    public int getMax(int start, int end) {
+        return getMax(new Range(0, size - 1), new Range(start, end), 0);
+    }
+
+    private int getMax(Range input, Range query, int index) {
+
+        if (!input.overlaps(query))
+            return 0;
+
+        if (input.start == input.end || input.equals(query)) {
+            return tree[index];
+        }
+
+        int start = input.start;
+        int end = input.end;
+        int left = 2 * index + 1;
+        int right = 2 * index + 2;
+        int mid = (end - start) / 2 + start;
+        return Math.max(
+                getMax(new Range(start, mid), query, left),
+                getMax(new Range(mid + 1, end), query, right));
+    }
+
+    public void updateTree(int updateIndex, int val) {
+        updateTree(0, size - 1, updateIndex, 0, val);
+    }
+
+    private void updateTree(int start, int end, int updateindex, int index, int val) {
+        if (start == end) {
+            tree[start] = val;
+            return;
+        }
+
+        if (updateindex > end || updateindex < start)
+            return;
+
+        int left = 2 * index + 1;
+        int right = 2 * index + 2;
+        int mid = (end - start) / 2 + start;
+
+        updateTree(start, mid, updateindex, left, val);
+        updateTree(mid + 1, end, updateindex, right, val);
+
+        tree[index] = Math.max(tree[left], tree[right]);
+
+    }
+
+    private class Range {
+        int start;
+        int end;
+
+        Range(int start, int end) {
+            this.start = start;
+            this.end = end;
+        }
+
+        boolean equals(Range r) {
+            return r.start == start && r.end == end;
+        }
+
+        boolean overlaps(Range r) {
+            return (start <= r.end && start >= r.start) || (end <= r.end && end >= r.start);
+        }
+    }
+}
+
 class DisjointSet {
     int[] parent;
     int[] size;
